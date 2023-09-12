@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import useStringHook from './hooks/useStringHook'
 import Example from './components/Example'
+import useInput from './hooks/useInput'
 
 function App() {
   const {
@@ -13,6 +14,9 @@ function App() {
     dblStr,
     setStringHookState
   } = useStringHook()
+
+  const firstname = useInput('fname', 'First Name')
+  const lastname = useInput('lname', 'Last Name')
 
 
   return (
@@ -26,7 +30,26 @@ function App() {
       <button onClick={reverseString}>Reverse IT!</button>
       <button onClick={dblStr}>Double IT!</button>
       <Example />
+      <h2>--------useInput-------</h2>
+      <h3>First Name: {firstname.value}</h3>
+      <input
+         id={firstname.id}
+         name={firstname.name}
+         value={firstname.value}
+         onChange={firstname.onChange}
+         placeholder={firstname.placeholder}
+      />
+      <h3>Last Name: {lastname.value}</h3>
+      <input
+         id={lastname.id}
+         name={lastname.name}
+         value={lastname.value}
+         onChange={lastname.onChange}
+         placeholder={lastname.placeholder}
+      />
+      <h3>Email Name: </h3>
     </>
+
   )
 }
 
