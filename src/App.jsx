@@ -5,6 +5,7 @@ import './App.css'
 import useStringHook from './hooks/useStringHook'
 import Example from './components/Example'
 import useInput from './hooks/useInput'
+import useAPI from './hooks/useAPI'
 
 function App() {
   const {
@@ -17,12 +18,18 @@ function App() {
 
   const firstname = useInput('fname', 'First Name')
   const lastname = useInput('lname', 'Last Name')
+  const email = useInput('email', 'Email')
+
+  const id = useInput('id', 'Id')
+  const route = useInput('route', "Route")
+
+  const API = useAPI(route.value, id.value)
 
 
   return (
     <>
     <h1>Custom Hooks</h1>
-      <h4>---------String Hook-------</h4>
+      {/* <h4>---------String Hook-------</h4>
       <p>{stringHookState}</p>
       <input onChange={event => setStringHookState(event.target.value)}
       />
@@ -47,8 +54,22 @@ function App() {
          onChange={lastname.onChange}
          placeholder={lastname.placeholder}
       />
-      <h3>Email Name: </h3>
+      <h3>Email Name: {email.value}</h3>
+      <input {...email}/> */}
+    <h2>-------API-------</h2>
+      Route: 
+      <select {...route}>
+        <option />
+        <option value='users'>Users</option>
+        <option value='posts'>Posts</option>
+        <option value='todos'>Todos</option>
+      </select><br/>
+      Id: <input {...id} />
+      
+      <p>Name: {API.name}</p>
+      <p>Title: {API.title}</p>
     </>
+
 
   )
 }
